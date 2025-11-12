@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Minds | Customer Churn Prediction</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-b6vjBf5lmPgNsM9hl+1uW0Nr+6NP9qyY5o+1OtSWT8gJtIhXCTITVEWilQoNqT9XyM1f9+GYV9lVl9xD8aAAw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="app-wrapper">
+        <header class="hero">
+            <div class="hero__tag">Data Minds</div>
+            <h1 class="hero__title">Customer Churn Prediction System</h1>
+            <p class="hero__subtitle">An AI-powered solution to predict customer churn using machine learning.</p>
+            <div class="hero-actions">
+                <a href="{{ url_for('visualization') }}" class="btn btn--ghost"><i class="fa-solid fa-chart-pie"></i> View Visualization Dashboard</a>
+                <a href="{{ url_for('visualization') }}" class="btn btn--primary"><i class="fa-solid fa-chart-column"></i> Explore Insights</a>
+            </div>
+        </header>
+
+        <main class="content">
+            <section class="card form-card">
+                <form id="churnForm">
+                    <h2 class="card__title">Customer Details</h2>
+                    <div class="form-grid">
+                        <div class="form-section">
+                            <h3><i class="fa-solid fa-user"></i> Demographics</h3>
+                            <div class="form-group">
+                                <label for="gender">Gender</label>
+                                <select id="gender" name="gender" required>
+                                    <option value="" disabled selected>Select gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="SeniorCitizen">Senior Citizen</label>
+                                <select id="SeniorCitizen" name="SeniorCitizen" required>
+                                    <option value="" disabled selected>Select status</option>
+                                    <option value="0">0 - No</option>
+                                    <option value="1">1 - Yes</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="Partner">Partner</label>
+                                <select id="Partner" name="Partner" required>
+                                    <option value="" disabled selected>Select option</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="Dependents">Dependents</label>
+                                <select id="Dependents" name="Dependents" required>
+                                    <option value="" disabled selected>Select option</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="tenure">Tenure (months)</label>
+                                <input type="number" id="tenure" name="tenure" min="0" max="72" placeholder="e.g., 12" required>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3><i class="fa-solid fa-globe"></i> Services</h3>
+                            <div class="form-group">
+                                <label for="PhoneService">Phone Service</label>
+                                <select id="PhoneService" name="PhoneService" required>
+                                    <option value="" disabled selected>Select option</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="MultipleLines">Multiple Lines</label>
+                                <select id="MultipleLines" name="MultipleLines" required>
+                                    <option value="" disabled selected>Select option</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                    <option value="No phone service">No phone service</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="InternetService">Internet Service</label>
+                                <select id="InternetService" name="InternetService" required>
+                                    <option value="" disabled selected>Select option</option>
+                                    <option value="DSL">DSL</option>
+                                    <option value="Fiber optic">Fiber optic</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="OnlineSecurity">Online Security</label>
+                                <select id="OnlineSecurity" name="OnlineSecurity" required>
+                                    <option value="" disabled selected>Select option</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                    <option value="No internet service">No internet service</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="OnlineBackup">Online Backup</label>
+                                <select id="OnlineBackup" name="OnlineBackup" required>
+                                    <option value="" disabled selected>Select option</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                    <option value="No internet service">No internet service</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="DeviceProtection">Device Protection</label>
+                                <select id="DeviceProtection" name="DeviceProtection" required>
+                                    <option value="" disabled selected>Select option</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                    <option value="No internet service">No internet service</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="TechSupport">Tech Support</label>
+                                <select id="TechSupport" name="TechSupport" required>
+                                    <option value="" disabled selected>Select option</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                    <option value="No internet service">No internet service</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="StreamingTV">Streaming TV</label>
+                                <select id="StreamingTV" name="StreamingTV" required>
+                                    <option value="" disabled selected>Select option</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                    <option value="No internet service">No internet service</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="StreamingMovies">Streaming Movies</label>
+                                <select id="StreamingMovies" name="StreamingMovies" required>
+                                    <option value="" disabled selected>Select option</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                    <option value="No internet service">No internet service</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3><i class="fa-solid fa-wallet"></i> Billing & Contract</h3>
+                            <div class="form-group">
+                                <label for="Contract">Contract</label>
+                                <select id="Contract" name="Contract" required>
+                                    <option value="" disabled selected>Select option</option>
+                                    <option value="Month-to-month">Month-to-month</option>
+                                    <option value="One year">One year</option>
+                                    <option value="Two year">Two year</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="PaperlessBilling">Paperless Billing</label>
+                                <select id="PaperlessBilling" name="PaperlessBilling" required>
+                                    <option value="" disabled selected>Select option</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="PaymentMethod">Payment Method</label>
+                                <select id="PaymentMethod" name="PaymentMethod" required>
+                                    <option value="" disabled selected>Select option</option>
+                                    <option value="Electronic check">Electronic check</option>
+                                    <option value="Mailed check">Mailed check</option>
+                                    <option value="Bank transfer (automatic)">Bank transfer (automatic)</option>
+                                    <option value="Credit card (automatic)">Credit card (automatic)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="MonthlyCharges">Monthly Charges</label>
+                                <input type="number" step="0.01" id="MonthlyCharges" name="MonthlyCharges" placeholder="e.g., 78.35" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="TotalCharges">Total Charges</label>
+                                <input type="number" step="0.01" id="TotalCharges" name="TotalCharges" placeholder="e.g., 5919.35" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="reset" class="btn btn--ghost"><i class="fa-solid fa-rotate-right"></i> Reset</button>
+                        <button type="submit" class="btn btn--primary"><i class="fa-solid fa-chart-line"></i> Predict Churn</button>
+                    </div>
+                </form>
+            </section>
+
+            <section id="resultCard" class="card result-card hidden">
+                <div class="result-icon" aria-hidden="true"></div>
+                <div>
+                    <h2 id="resultTitle"></h2>
+                    <p id="resultMessage"></p>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">Developed by Data Minds Team | Powered by Machine Learning</footer>
+    </div>
+
+    <div id="loadingOverlay" class="loading-overlay hidden" role="status" aria-live="polite">
+        <div class="spinner"></div>
+        <span>Analyzing customer profile...</span>
+    </div>
+
+    <script>
+        const form = document.getElementById('churnForm');
+        const resultCard = document.getElementById('resultCard');
+        const resultTitle = document.getElementById('resultTitle');
+        const resultMessage = document.getElementById('resultMessage');
+        const resultIcon = document.querySelector('.result-icon');
+        const loadingOverlay = document.getElementById('loadingOverlay');
+
+        function toggleLoading(show) {
+            loadingOverlay.classList.toggle('hidden', !show);
+        }
+
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            const formData = new FormData(form);
+            const payload = Object.fromEntries(formData.entries());
+
+            toggleLoading(true);
+            resultCard.classList.add('hidden');
+
+            try {
+                const response = await fetch('/predict', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    const errorPayload = await response.json().catch(() => ({}));
+                    const errorMessage = errorPayload.error || 'Unable to retrieve prediction.';
+                    const errorDetails = errorPayload.details;
+
+                    throw new Error(
+                        Array.isArray(errorDetails)
+                            ? `${errorMessage}: ${errorDetails.join(', ')}`
+                            : `${errorMessage}${errorDetails ? ` (${errorDetails})` : ''}`
+                    );
+                }
+
+                const data = await response.json();
+
+                const isChurn = data.prediction === 'Yes';
+
+                resultCard.classList.remove('hidden');
+                resultCard.classList.toggle('card--positive', !isChurn);
+                resultCard.classList.toggle('card--negative', isChurn);
+
+                if (isChurn) {
+                    resultTitle.textContent = 'Customer is likely to churn';
+                    resultMessage.textContent = '🔴 We recommend proactive retention strategies for this customer.';
+                    resultIcon.textContent = '🔴';
+                } else {
+                    resultTitle.textContent = 'Customer is not likely to churn';
+                    resultMessage.textContent = '🟢 The customer is engaged and likely to stay with the service.';
+                    resultIcon.textContent = '🟢';
+                }
+            } catch (error) {
+                resultCard.classList.remove('hidden');
+                resultCard.classList.remove('card--positive');
+                resultCard.classList.add('card--negative');
+                resultTitle.textContent = 'Prediction error';
+                resultMessage.textContent = error.message || 'There was a problem generating the prediction. Please try again later.';
+                resultIcon.textContent = '⚠️';
+                console.error(error);
+            } finally {
+                toggleLoading(false);
+            }
+        });
+
+        form.addEventListener('reset', () => {
+            resultCard.classList.add('hidden');
+            resultCard.classList.remove('card--positive', 'card--negative');
+            resultIcon.textContent = '';
+        });
+    </script>
+</body>
+</html>

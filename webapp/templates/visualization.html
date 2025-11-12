@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Minds | Visualization Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-b6vjBf5lmPgNsM9hl+1uW0Nr+6NP9qyY5o+1OtSWT8gJtIhXCTITVEWilQoNqT9XyM1f9+GYV9lVl9xD8aAAw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="viz-body">
+    <header class="viz-header">
+        <div class="viz-header__title">📊 Data Minds – Customer Churn Visualization</div>
+        <div class="viz-header__actions">
+            <a href="{{ url_for('index') }}" class="viz-nav-btn"><span>🏠</span> Home</a>
+            <button type="button" class="viz-nav-btn viz-nav-btn--ghost" onclick="window.location.reload()"><span>🔁</span> Refresh Page</button>
+        </div>
+    </header>
+
+    <main class="viz-main">
+        <section class="viz-intro">
+            <h1>Data Minds – Customer Churn Visualization Dashboard</h1>
+            <p>Interactive insights into customer behavior and churn patterns.</p>
+        </section>
+
+        {% if error_message %}
+            <section class="viz-error">
+                <h2>Data unavailable</h2>
+                <p>{{ error_message }}</p>
+            </section>
+        {% else %}
+            <section class="viz-grid">
+                {% for chart in charts %}
+                    <article class="graph-card" style="animation-delay: {{ loop.index0 * 80 }}ms;" data-type="{{ chart.type }}">
+                        <h2>{{ chart.title }}</h2>
+                        <img src="{{ url_for('static', filename='graphs/' + chart.image) }}" alt="{{ chart.title }}" loading="lazy">
+                        <div class="graph-card__insight">💡 {{ chart.insight }}</div>
+                    </article>
+                {% endfor %}
+            </section>
+        {% endif %}
+    </main>
+
+    <footer class="viz-footer">Developed by Data Minds Team | © 2025 All Rights Reserved</footer>
+</body>
+</html>
