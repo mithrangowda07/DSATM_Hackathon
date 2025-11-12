@@ -1,0 +1,28 @@
+PS D:\Projects\DSATM_Hackathon\random_forest> python .\train.py
+⚖️ Applying SMOTE to balance classes...
+✅ Before SMOTE: [4139 1495]
+✅ After SMOTE:  [4139 4139]
+
+🌳 Random Forest model trained successfully!
+
+📈 Training Accuracy: 93.23%
+
+📊 Confusion Matrix (Test Data):
+[[688 140]
+ [111 717]]
+
+✅ Test Accuracy: 84.84%
+❌ Error Rate: 15.16%
+
+📄 Classification Report (Test Data):
+              precision    recall  f1-score   support
+
+           0       0.86      0.83      0.85       828
+           1       0.84      0.87      0.85       828
+
+    accuracy                           0.85      1656
+   macro avg       0.85      0.85      0.85      1656
+weighted avg       0.85      0.85      0.85      1656
+
+
+💾 Model saved as: D:\Projects\DSATM_Hackathon\random_forest_model.pkl

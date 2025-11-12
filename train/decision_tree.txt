@@ -1,0 +1,28 @@
+ Decision Tree trained successfully!
+Impurity Measure Used: GINI
+
+📊 Confusion Matrix:
+[[682 146]
+ [164 135]]
+
+✅ Accuracy: 72.49%
+❌ Error Rate: 27.51%
+
+📈 Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.81      0.82      0.81       828
+           1       0.48      0.45      0.47       299
+
+    accuracy                           0.72      1127
+   macro avg       0.64      0.64      0.64      1127
+weighted avg       0.72      0.72      0.72      1127
+
+
+🌲 Root Node (First Split) Details:
+Feature used for first split: Contract
+Impurity at root node: 0.5000
+Samples at root node: 4507
+Class distribution at root: [[0.5 0.5]]
+
+🔹 Overall impurity at root (before any split): 0.3899

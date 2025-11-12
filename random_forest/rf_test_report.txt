@@ -1,0 +1,19 @@
+📊 Random Forest Model Evaluation Report
+=========================================
+
+Confusion Matrix:
+[[863 172]
+ [156 218]]
+
+Accuracy: 76.72%
+Error Rate: 23.28%
+
+Classification Report:
+              precision    recall  f1-score   support
+
+          No       0.85      0.83      0.84      1035
+         Yes       0.56      0.58      0.57       374
+
+    accuracy                           0.77      1409
+   macro avg       0.70      0.71      0.71      1409
+weighted avg       0.77      0.77      0.77      1409
