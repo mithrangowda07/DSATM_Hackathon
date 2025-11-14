@@ -79,18 +79,17 @@ By contributing to innovation through AI-driven telecom analytics.
 ---
 
 
----
+
 
 ## 🛠️ Tech Stack  
 
 | Category | Tools |
 |---------|--------|
 | Programming | Python |
-| ML Frameworks | Scikit-learn, XGBoost |
+| ML Frameworks | Scikit-learn, XGBoost,Gradient Boost,SVC,Random Forest |
 | Optimization | Optuna |
 | Resampling | imbalanced-learn (SMOTE) |
 | Visualization | Matplotlib, Seaborn |
-| Deployment | HuggingFace AutoTrain |
 | Hardware | GPU-accelerated training |
 
 ---
